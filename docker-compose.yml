@@ -1,0 +1,34 @@
+version: "2"
+services:
+  cloud-user:
+    image: 17191095270/cloud-user
+    container_name: cloud-user
+    hostname: cloud-user
+    restart: always # 容器重启策略
+    ports:
+      - "8080:8080"
+    networks:
+      - cloud-net
+    depends_on:
+      - mysql
+  mysql: #mysql数据库
+    image: mysql
+    container_name: mysql-master # 容器名
+    hostname: mysql
+    volumes: # 挂载 下边每行前边的`-`代表这个东西是数组的一个元素.就是说volumes属性的值是一个数组
+      - ./docker/mysql/data:/var/lib/mysql # mysql数据文件位置
+      - ./docker/mysql/conf:/etc/mysql/conf.d # mysql配置文件位置
+      - /etc/localtime:/etc/localtime
+    ports:
+      - "3306:3306"
+    ulimits: # 操作系统限制
+      nproc: 65535
+    mem_limit: 1024m # 最大内存使用不超过1024m,我在本地机器上测试,才只写了1024m,生产上需要根据自己的服务器配置,以及docker容器数进行调优.
+    restart: always # 容器重启策略
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - cloud-net
+networks:
+  cloud-net:
+    driver: bridge

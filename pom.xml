@@ -19,15 +19,12 @@
   </modules>
 
   <properties>
-    <!--<filters>src/main/resources/filters/filter-${env}.properties</filters>-->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
-    <!-- 改变thymeleaf检查html的松紧度，使标签不闭合成为合法 start -->
     <thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
     <thymeleaf-layout-dialect.version>2.0.5</thymeleaf-layout-dialect.version>
-    <!-- 改变thymeleaf检查html的松紧度，使标签不闭合成为合法 end -->
-    <docker.image.prefix>17191095270</docker.image.prefix>
+    <docker.image.prefix>registry.cn-beijing.aliyuncs.com/wangdali</docker.image.prefix>
   </properties>
   <dependencyManagement>
     <dependencies>

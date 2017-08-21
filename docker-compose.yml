@@ -1,7 +1,7 @@
 version: "2"
 services:
   cloud-user:
-    image: 17191095270/cloud-user
+    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-user
     container_name: cloud-user
     hostname: cloud-user
     restart: always # 容器重启策略

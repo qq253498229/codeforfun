@@ -1,4 +1,4 @@
-FROM nginx 	
-
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY default.conf /etc/nginx/conf.d/default.conf
+FROM node:8.4.0
+WORKDIR /app
+COPY ./static /app
+ENTRYPOINT ["npm","start"]

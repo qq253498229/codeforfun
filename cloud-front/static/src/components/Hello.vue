@@ -48,7 +48,7 @@
 <script>
   export default {
     data: function () {
-      return {slide: 1};
+      return {slide: 0};
     },
     methods: {
       blankImg(x, y) {

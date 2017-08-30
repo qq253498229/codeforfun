@@ -1,18 +1,7 @@
-FROM java:8
-
-RUN MAVEN_VERSION=3.3.9 \
- && cd /usr/share \
- && wget http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz -O - | tar xzf - \
- && mv /usr/share/apache-maven-$MAVEN_VERSION /usr/share/maven \
- && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
-
-WORKDIR /home/lab
-ENTRYPOINT ["java","-jar","target/cloud-user.jar"]
-EXPOSE 8080
-
-
+FROM maven:3.5.0-jdk-8
+VOLUME /Users/wangbin/.m2/repository /root/.m2/repository
+WORKDIR /app
 COPY pom.xml .
-RUN mvn verify -DskipTests --fail-never
-
 COPY src ./src
 RUN mvn verify
+ENTRYPOINT ["java","-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005", "-DPROD_MODE=true", "-Xmx32m","-jar","target/cloud-user.jar"]

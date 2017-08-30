@@ -2,29 +2,38 @@ package cn.codeforfun.controller;
 
 import cn.codeforfun.dao.UserDao;
 import cn.codeforfun.entity.User;
+import cn.codeforfun.service.UserService;
+import org.apache.log4j.Logger;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
+  private static final Logger log = Logger.getLogger(UserController.class);
+
   @Resource
   private UserDao userDao;
+  @Resource
+  private UserService userService;
 
   @RequestMapping(value = "{id}", method = RequestMethod.GET)
   public User get(@PathVariable Integer id) {
     return userDao.findOne(id);
   }
 
-  @RequestMapping(method = RequestMethod.GET)
-  public List<User> list() {
-    return userDao.findAll();
+  @RequestMapping(value = "/{page}/{size}", method = RequestMethod.GET)
+  public Page<User> list(@PathVariable("page") Integer page, @PathVariable("size") Integer size) {
+    log.info(page);
+    log.info(size);
+    return userService.findPage(page, size);
   }
 
-  @RequestMapping(method = RequestMethod.POST)
+  @RequestMapping(value = "/save", method = RequestMethod.POST)
   public boolean save(@RequestBody User user) {
     userDao.save(user);
     return true;

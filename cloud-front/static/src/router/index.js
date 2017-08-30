@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import Student from '@/components/Student'
+import User from '@/components/User'
 import Teacher from '@/components/Teacher'
 import Course from '@/components/Course'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -15,9 +15,9 @@ export default new Router({
       component: Hello
     },
     {
-      path: '/student',
-      name: 'Student',
-      component: Student
+      path: '/user',
+      name: 'User',
+      component: User
     },
     {
       path: '/teacher',

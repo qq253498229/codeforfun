@@ -1,25 +1,38 @@
 <template>
   <div id="app">
-    <b-navbar toggleable="md" type="dark" variant="info">
-      <b-nav-toggle target="nav_collapse"></b-nav-toggle>
-      <b-navbar-brand href="#" to="/">学生管理系统</b-navbar-brand>
-      <b-collapse is-nav id="nav_collapse">
-        <b-nav is-nav-bar>
-          <b-nav-item href="#" to="/student">学生管理</b-nav-item>
-          <b-nav-item href="#" to="/teacher">教师管理</b-nav-item>
-          <b-nav-item href="#" to="/course">课程管理</b-nav-item>
-        </b-nav>
-        <b-nav is-nav-bar class="ml-auto">
-          <b-nav-item-dropdown right>
-            <template slot="button-content">
-              <span>User</span>
-            </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Signout</b-dropdown-item>
-          </b-nav-item-dropdown>
-        </b-nav>
-      </b-collapse>
-    </b-navbar>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">学生管理系统</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li :class="{active:$route.path=='/user'}">
+              <router-link to="/user">用户管理</router-link>
+            </li>
+            <li :class="{active:$route.path=='/teacher'}">
+              <router-link to="/teacher">教师管理</router-link>
+            </li>
+            <li :class="{active:$route.path=='/course'}">
+              <router-link to="/course">课程管理</router-link>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown <span
+                class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div>
+    </nav>
     <router-view></router-view>
   </div>
 </template>
@@ -27,7 +40,7 @@
 <script>
   export default {
     name: 'app',
-    data: function(){
+    data() {
       return {};
     }
   }
@@ -36,6 +49,7 @@
 <style>
   body {
     background-color: #eee;
+    padding-top: 70px;
   }
 
   #app {

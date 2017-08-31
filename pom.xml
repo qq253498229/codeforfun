@@ -9,5 +9,6 @@
   <packaging>pom</packaging>
   <modules>
     <module>cloud-user</module>
+    <module>cloud-eureka</module>
   </modules>
 </project>

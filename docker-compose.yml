@@ -11,12 +11,33 @@ services:
     restart: always
     volumes:
       - ./cloud-front/static:/app
+  cloud-eureka:
+    build: cloud-eureka
+    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-eureka
+    restart: always
+    volumes:
+      - $HOME/.m2/repository:/root/.m2/repository
+    ports:
+      - "8761:8761"
+  cloud-test:
+    build: cloud-test
+    image: registry.cn-beijing.aliyuncs.com/wangdalicloud-test
+    restart: always
+    volumes:
+      - $HOME/.m2/repository:/root/.m2/repository
+    depends_on:
+      - cloud-eureka
   cloud-user:
     build: cloud-user
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-user
     restart: always
-    ports:
-      - "5005:5005"
+    volumes:
+      - $HOME/.m2/repository:/root/.m2/repository
+#      - ./cloud-user/target:/app/target #热加载
+#    ports:
+#      - "5005:5005" #远程DEBUG
+    depends_on:
+      - cloud-eureka
   mysql: #mysql数据库
     image: mysql:5.7.19
     hostname: mysql

@@ -32,6 +32,10 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-eureka</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
@@ -56,7 +60,9 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <mainClass>cn.codeforfun.Application</mainClass>
+          <mainClass>cn.codeforfun.UserApplication</mainClass>
+          <!--远程DEBUG-->
+          <!--<jvmArguments>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments>-->
         </configuration>
       </plugin>
     </plugins>

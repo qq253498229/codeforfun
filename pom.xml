@@ -9,7 +9,6 @@
   <packaging>pom</packaging>
   <modules>
     <module>cloud-user</module>
-    <module>cloud-test</module>
     <module>cloud-eureka</module>
     <module>cloud-config</module>
   </modules>

@@ -14,13 +14,6 @@ services:
     restart: always
     volumes:
       - "maven:/root/.m2/repository"
-  cloud-test:
-    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-test
-    restart: always
-    volumes:
-      - "maven:/root/.m2/repository"
-    depends_on:
-      - cloud-eureka
   cloud-user:
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-user
     restart: always

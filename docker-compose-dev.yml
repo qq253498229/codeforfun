@@ -19,6 +19,12 @@ services:
       - "maven:/root/.m2/repository"
     ports:
       - "8761:8761"
+  cloud-config:
+    build: cloud-config
+    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-config
+    restart: always
+    volumes:
+      - "maven:/root/.m2/repository"
   cloud-test:
     build: cloud-test
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-test

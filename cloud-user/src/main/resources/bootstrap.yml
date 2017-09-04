@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: cloud-user
+  cloud:
+    config:
+      uri: http://cloud-config:8080/
+      profile: dev
+      label: master
+server:
+  port: 8080

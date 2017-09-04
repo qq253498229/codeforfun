@@ -9,6 +9,11 @@ services:
     restart: always
     volumes:
       - "maven:/root/.m2/repository"
+  cloud-config:
+    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-config
+    restart: always
+    volumes:
+      - "maven:/root/.m2/repository"
   cloud-test:
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-test
     restart: always
@@ -23,6 +28,7 @@ services:
       - "maven:/root/.m2/repository"
     depends_on:
       - cloud-eureka
+      - cloud-config
   mysql: #mysql数据库
     image: mysql:5.7.19
     hostname: mysql

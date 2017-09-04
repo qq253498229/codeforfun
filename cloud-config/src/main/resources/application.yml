@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: cloud-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/qq253498229/codeforfun/
+          search-paths: cloud-repo
+server:
+  port: 8080

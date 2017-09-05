@@ -26,8 +26,8 @@ services:
     image: mysql:5.7.19
     hostname: mysql
     volumes: # 挂载 下边每行前边的`-`代表这个东西是数组的一个元素.就是说volumes属性的值是一个数组
-      - "./mysql/data:/var/lib/mysql" # mysql数据文件位置
-      - "./mysql/conf:/etc/mysql/conf.d" # mysql配置文件位置
+      - "./docker/mysql/data:/var/lib/mysql" # mysql数据文件位置
+      - "./docker/mysql/conf:/etc/mysql/conf.d" # mysql配置文件位置
       - "/etc/localtime:/etc/localtime"
     ulimits: # 操作系统限制
       nproc: 65535

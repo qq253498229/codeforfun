@@ -1,0 +1,44 @@
+{
+  "Services": {
+    "cloud-config": {
+      "Image": "registry.cn-beijing.aliyuncs.com/wangdali/cloud-config@sha256:8da215a13670638afccc2a0319d1e2756d34db17cbf130d4b4f1b16e9ed9b35e", 
+      "Networks": [
+        "default"
+      ]
+    }, 
+    "cloud-eureka": {
+      "Image": "registry.cn-beijing.aliyuncs.com/wangdali/cloud-eureka@sha256:b09c9b4cef3d948a9b080abbb80c5b64c8483be19fcd1e852e4961322dab6f2a", 
+      "Networks": [
+        "default"
+      ]
+    }, 
+    "cloud-nginx": {
+      "Image": "registry.cn-beijing.aliyuncs.com/wangdali/cloud-nginx@sha256:5e9e3cf587bca77fc8d59053592c41fc688d6f3c6eb8b7e56ccd3ec733aa2883", 
+      "Networks": [
+        "default"
+      ], 
+      "Ports": [
+        {
+          "Port": 80, 
+          "Protocol": "tcp"
+        }
+      ]
+    }, 
+    "cloud-user": {
+      "Image": "registry.cn-beijing.aliyuncs.com/wangdali/cloud-user@sha256:6bbc61f57043418b695f71e5001996528f4d6213a0516081f5df7a86ff25aabd", 
+      "Networks": [
+        "default"
+      ]
+    }, 
+    "mysql": {
+      "Env": [
+        "MYSQL_ROOT_PASSWORD=root"
+      ], 
+      "Image": "mysql@sha256:96edf37370df96d2a4ee1715cc5c7820a0ec6286551a927981ed50f0273d9b43", 
+      "Networks": [
+        "default"
+      ]
+    }
+  }, 
+  "Version": "0.1"
+}

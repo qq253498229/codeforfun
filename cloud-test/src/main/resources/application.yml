@@ -1,0 +1,11 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: cloud-test
+eureka:
+  instance:
+    hostname: cloud-test
+  client:
+    service-url:
+      defaultZont: http://cloud-eureka:8761/eureka/

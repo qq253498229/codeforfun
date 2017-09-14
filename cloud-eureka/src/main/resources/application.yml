@@ -1,0 +1,10 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: cloud-eureka
+eureka:
+  instance:
+    hostname: cloud-eureka
+  client:
+    service-url: http://${eureka.instance.hostname}:${server.port}/eureka/

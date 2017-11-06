@@ -13,3 +13,9 @@ spring:
     name: cloud-gateway
 server:
   port: 8080
+zuul:
+  ignored-services: '*'
+  routes:
+    auth-server:
+      serviceId: cloud-user
+      path: /user/*

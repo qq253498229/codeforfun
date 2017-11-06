@@ -8,4 +8,4 @@ spring:
           uri: https://github.com/qq253498229/codeforfun/
           search-paths: cloud-repo
 server:
-  port: 8080
+  port: 8000

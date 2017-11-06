@@ -3,7 +3,7 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://mysql:3306/codeforfun?useUnicode=true&useSSL=false&autoReconnect=true&createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/codeforfun?useUnicode=true&useSSL=false&autoReconnect=true&createDatabaseIfNotExist=true
     type: com.mchange.v2.c3p0.ComboPooledDataSource
   jpa:
     hibernate:
@@ -17,4 +17,4 @@ eureka:
     hostname: cloud-user
   client:
     service-url:
-      defaultZone: http://cloud-eureka:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/

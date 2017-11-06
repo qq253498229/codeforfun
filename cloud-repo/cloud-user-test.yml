@@ -13,8 +13,6 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL57InnoDBDialect
 eureka:
-  instance:
-    hostname: cloud-user
   client:
     service-url:
       defaultZone: http://cloud-eureka:8761/eureka/

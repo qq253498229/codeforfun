@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: cloud-user
   datasource:
     username: root
     password: root
@@ -16,6 +18,3 @@ eureka:
   client:
     service-url:
       defaultZone: http://cloud-eureka:8761/eureka/
-spring:
-  application:
-    name: cloud-user

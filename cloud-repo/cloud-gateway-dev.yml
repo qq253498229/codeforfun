@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: cloud-gateway
+zuul:
+  ignored-services: '*'
+  routes:
+    auth-server:
+      serviceId: cloud-user
+      path: /user/*

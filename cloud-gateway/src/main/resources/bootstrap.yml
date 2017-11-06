@@ -8,6 +8,7 @@ spring:
       discovery:
         enabled: true
         service-id: cloud-gateway
+      profile: dev
   application:
     name: cloud-gateway
 server:

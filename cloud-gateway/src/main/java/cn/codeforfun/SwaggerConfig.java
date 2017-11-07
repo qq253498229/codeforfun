@@ -50,7 +50,6 @@ public class SwaggerConfig implements SwaggerResourcesProvider {
   @Override
   public List<SwaggerResource> get() {
     List<SwaggerResource> resources = new ArrayList<>();
-    System.out.println(zuulConst.getPrefix());
     for (Map.Entry<String, ZuulConst.ZuulRoute> entry : zuulConst.getRoutes().entrySet()) {
       ZuulConst.ZuulRoute value = entry.getValue();
       String location = zuulConst.getPrefix() + value.getPath().split("/\\*\\*")[0] + "/v2/api-docs";

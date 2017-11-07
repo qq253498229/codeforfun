@@ -1,0 +1,13 @@
+zuul:
+  prefix: /api
+  routes:
+    cloud-user:
+      path: /user/**
+      service-id: cloud-user
+      name: 用户模块
+      version: 1.0
+    cloud-wechat:
+      path: /wechat/**
+      service-id: cloud-wechat
+      name: 微信模块
+      version: 1.0

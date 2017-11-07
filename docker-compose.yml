@@ -16,30 +16,35 @@ services:
 #    environment:
 #      - "TZ=Asia/Shanghai"
   cloud-eureka:
+    build: cloud-eureka
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-eureka
     environment:
       - "TZ=Asia/Shanghai"
     ports:
       - "8761:8761"
   cloud-config:
+    build: cloud-config
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-config
     environment:
       - "TZ=Asia/Shanghai"
     ports:
       - "8000:8000"
   cloud-gateway:
+    build: cloud-gateway
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-gateway
     environment:
       - "TZ=Asia/Shanghai"
     ports:
       - "8888:8888"
   cloud-user:
+    build: cloud-user
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-user
     volumes:
       - "maven:/root/.m2/repository"
     environment:
       - "TZ=Asia/Shanghai"
   cloud-wechat:
+    build: cloud-wechat
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-wechat
     volumes:
       - "maven:/root/.m2/repository"

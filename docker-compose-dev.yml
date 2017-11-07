@@ -1,10 +1,12 @@
 version: "3"
 services:
-  cloud-nginx:
-    build: cloud-nginx
-    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-nginx
-    restart: always
-    ports: ["80:80"]
+#  cloud-nginx:
+#    build: cloud-nginx
+#    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-nginx
+#    restart: always
+#    ports: ["80:80"]
+#    environment:
+#      - "TZ=Asia/Shanghai"
 #  cloud-front:
 #    build: cloud-front
 #    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-front
@@ -14,42 +16,40 @@ services:
 #    environment:
 #      - "TZ=Asia/Shanghai"
   cloud-eureka:
+    build: cloud-eureka
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-eureka
     environment:
       - "TZ=Asia/Shanghai"
     ports:
       - "8761:8761"
   cloud-config:
+    build: cloud-config
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-config
     environment:
       - "TZ=Asia/Shanghai"
     ports:
       - "8000:8000"
-    depends_on:
-      - cloud-eureka
   cloud-gateway:
+    build: cloud-gateway
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-gateway
     environment:
       - "TZ=Asia/Shanghai"
     ports:
       - "8888:8888"
-    depends_on:
-      - cloud-eureka
   cloud-user:
+    build: cloud-user
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-user
+    volumes:
+      - "maven:/root/.m2/repository"
     environment:
       - "TZ=Asia/Shanghai"
-    depends_on:
-      - cloud-config
-      - cloud-gateway
-      - mysql
   cloud-wechat:
+    build: cloud-wechat
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-wechat
+    volumes:
+      - "maven:/root/.m2/repository"
     environment:
       - "TZ=Asia/Shanghai"
-    depends_on:
-      - cloud-config
-      - cloud-gateway
   mysql: #mysql数据库
     image: mysql:5.7.19
     hostname: mysql
@@ -63,12 +63,5 @@ services:
       - "TZ=Asia/Shanghai"
     ports:
       - "3306:3306"
-  ngrok:
-    image: hteen/ngrok
-    ports:
-      - "4443:4443"
-    environment:
-      DOMAIN: ngrok.codeforfun.cn
-    command: /bin/sh /server.sh
 volumes:
   maven:

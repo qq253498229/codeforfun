@@ -1,10 +1,15 @@
+server:
+  port: 8080
 spring:
   application:
     name: cloud-user
   cloud:
     config:
-      uri: http://cloud-config:8080/
+      discovery:
+        enabled: true
+        service-id: cloud-config
       profile: dev
-      label: master
-server:
-  port: 8080
+eureka:
+  client:
+    service-url:
+      defaultZone: http://cloud-eureka:8761/eureka/

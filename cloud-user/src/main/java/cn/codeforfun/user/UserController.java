@@ -1,16 +1,19 @@
-package cn.codeforfun.controller;
+package cn.codeforfun.user;
 
-import cn.codeforfun.dao.UserDao;
-import cn.codeforfun.entity.User;
-import cn.codeforfun.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
+/**
+ * @author wangbin
+ */
 @RestController
-@RequestMapping("/user")
+@Api(description = "用户模块")
 public class UserController {
 
 
@@ -19,23 +22,33 @@ public class UserController {
   @Resource
   private UserService userService;
 
-  @RequestMapping(value = "{id}", method = RequestMethod.GET)
+  @ApiOperation("根据Id查询用户")
+  @GetMapping("{id}")
   public User get(@PathVariable Integer id) {
     return userDao.findOne(id);
   }
 
-  @RequestMapping(value = "/{page}/{size}", method = RequestMethod.GET)
+  @ApiOperation("查询所有用户")
+  @GetMapping("/")
+  public List<User> list() {
+    return userService.findAll();
+  }
+
+  @ApiOperation("分页查询用户")
+  @GetMapping("{page}/{size}")
   public Page<User> list(@PathVariable("page") Integer page, @PathVariable("size") Integer size) {
     return userService.findPage(page, size);
   }
 
-  @RequestMapping(value = "/save", method = RequestMethod.POST)
+  @ApiOperation("保存用户")
+  @PostMapping("/save")
   public boolean save(@RequestBody User user) {
     userDao.save(user);
     return true;
   }
 
-  @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+  @ApiOperation("根据Id删除用户")
+  @DeleteMapping("{id}")
   public boolean delete(@PathVariable Integer id) {
     userDao.delete(id);
     return true;

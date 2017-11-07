@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 services:
   cloud-nginx:
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-nginx
@@ -8,21 +8,34 @@ services:
       - "443:443"
   cloud-eureka:
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-eureka
-    restart: always
-    volumes:
-      - "maven:/root/.m2/repository"
+    environment:
+      - "TZ=Asia/Shanghai"
   cloud-config:
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-config
-    restart: always
-    volumes:
-      - "maven:/root/.m2/repository"
-  cloud-user:
-    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-user
-    restart: always
-    volumes:
-      - "maven:/root/.m2/repository"
+    environment:
+      - "TZ=Asia/Shanghai"
     depends_on:
       - cloud-eureka
+  cloud-gateway:
+    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-gateway
+    environment:
+      - "TZ=Asia/Shanghai"
+    depends_on:
+      - cloud-eureka
+  cloud-user:
+    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-user
+    environment:
+      - "TZ=Asia/Shanghai"
+    depends_on:
+      - cloud-gateway
+      - cloud-config
+      - mysql
+  cloud-wechat:
+    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-wechat
+    environment:
+      - "TZ=Asia/Shanghai"
+    depends_on:
+      - cloud-gateway
       - cloud-config
   mysql: #mysql数据库
     image: mysql:5.7.19
@@ -30,16 +43,13 @@ services:
     volumes: # 挂载 下边每行前边的`-`代表这个东西是数组的一个元素.就是说volumes属性的值是一个数组
       - "./docker/mysql/data:/var/lib/mysql" # mysql数据文件位置
       - "./docker/mysql/conf:/etc/mysql/conf.d" # mysql配置文件位置
-      - "/etc/localtime:/etc/localtime"
-    ulimits: # 操作系统限制
-      nproc: 65535
-    mem_limit: 1024m # 最大内存使用不超过1024m,我在本地机器上测试,才只写了1024m,生产上需要根据自己的服务器配置,以及docker容器数进行调优.
     restart: always # 容器重启策略
     environment:
       MYSQL_ROOT_PASSWORD: root
+    environment:
+      - "TZ=Asia/Shanghai"
   ngrok:
     image: hteen/ngrok
-    container_name: cloud-ngrok
     ports:
       - "4443:4443"
     environment:

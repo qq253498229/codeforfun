@@ -1,0 +1,9 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: cloud-wechat
+eureka:
+  client:
+    service-url:
+      default-zone: http://cloud-eureka:8761/eureka/

@@ -70,6 +70,5 @@ services:
       REDMINE_DB_USERNAME: root
       REDMINE_DB_DATABASE: redmine
       REDMINE_DB_PASSWORD: example
-      REDMINE_DB_ENCODING: UTF-8
 volumes:
   maven:

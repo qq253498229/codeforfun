@@ -59,9 +59,7 @@ services:
     volumes:
       - "/data/ngrok:/myfiles"
   redmine:
-    image: image: sameersbn/redmine:3.4.2
-    labels:
-      kompose.service.type: nodeport
+    image: sameersbn/redmine:3.4.2
     volumes:
       - "~/docker/redmine/mysql_data:/var/lib/mysql"
       - "~/docker/redmine/redmine_data:/home/redmine/data"

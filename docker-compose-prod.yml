@@ -64,7 +64,7 @@ services:
     volumes:
       - "/data/redmine/files:/usr/src/redmine/files"
     environment:
-      REDMINE_DB_MYSQL: db
+      REDMINE_DB_MYSQL: redmine-db
       REDMINE_DB_PASSWORD: example
   redmine-db:
     image: mysql:5.7

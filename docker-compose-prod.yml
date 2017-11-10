@@ -1,6 +1,7 @@
 version: "3"
 services:
   cloud-nginx:
+    build: cloud-nginx
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-nginx
     restart: always
     ports:

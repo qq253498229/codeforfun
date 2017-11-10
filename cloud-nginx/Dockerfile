@@ -4,5 +4,6 @@ COPY ./cert/* /etc/nginx/
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
 COPY ngrok.conf /etc/nginx/conf.d/ngrok.conf
+COPY redmine.conf /etc/nginx/conf.d/redmine.conf
 COPY ./static /usr/share/nginx/html/static
 COPY ./index.html /usr/share/nginx/html

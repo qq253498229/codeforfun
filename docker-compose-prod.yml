@@ -57,5 +57,9 @@ services:
     command: /bin/sh /server.sh
     volumes:
       - "/data/ngrok:/myfiles"
+  redmine:
+    image: redmine
+    volumes:
+      - "/data/redmine:/usr/src/redmine/files"
 volumes:
   maven:

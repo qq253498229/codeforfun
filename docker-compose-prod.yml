@@ -58,21 +58,19 @@ services:
     command: /bin/sh /server.sh
     volumes:
       - "/data/ngrok:/myfiles"
-  redmine:
-    image: redmine
-    restart: always
+  redmine-mariadb:
+    image: bitnami/mariadb:latest
+    environment:
+      ALLOW_EMPTY_PASSWORD: yes
     volumes:
-      - "/data/redmine/files:/usr/src/redmine/files"
-    environment:
-      REDMINE_DB_MYSQL: redmine-db
-      REDMINE_DB_PASSWORD: example
-  redmine-db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: redmine
-    volumes: # 挂载 下边每行前边的`-`代表这个东西是数组的一个元素.就是说volumes属性的值是一个数组
-      - "~/docker/redmine/data:/var/lib/mysql" # mysql数据文件位置
+      - "~/docker/redmine/mariadb_data:/bitnami"
+  redmine:
+    image: bitnami/redmine:latest
+    labels:
+      kompose.service.type: nodeport
+    volumes:
+      - "~/docker/redmine/redmine_data:/bitnami"
+    depends_on:
+      - redmine-mariadb
 volumes:
   maven:

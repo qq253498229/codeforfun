@@ -61,6 +61,6 @@ services:
   redmine:
     image: redmine
     volumes:
-      - "/data/redmine:/usr/src/redmine/files"
+      - "/data/redmine:/usr/src/redmine"
 volumes:
   maven:

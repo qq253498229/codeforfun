@@ -72,5 +72,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: redmine
+    volumes: # 挂载 下边每行前边的`-`代表这个东西是数组的一个元素.就是说volumes属性的值是一个数组
+      - "~/docker/redmine/data:/var/lib/mysql" # mysql数据文件位置
 volumes:
   maven:

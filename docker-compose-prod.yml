@@ -47,6 +47,7 @@ services:
     restart: always # 容器重启策略
     environment:
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: redmine
     environment:
       - "TZ=Asia/Shanghai"
   ngrok:
@@ -60,10 +61,12 @@ services:
       - "/data/ngrok:/myfiles"
   redmine:
     image: redmine
+    restart: always
     volumes:
-      - "/data/redmine:/usr/src/redmine"
+      - "/data/redmine/files:/usr/src/redmine/files"
     environment:
       REDMINE_DB_MYSQL: mysql
+      REDMINE_DB_USERNAME: root
       REDMINE_DB_PASSWORD: root
 volumes:
   maven:

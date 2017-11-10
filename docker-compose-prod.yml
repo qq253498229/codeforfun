@@ -58,19 +58,14 @@ services:
     command: /bin/sh /server.sh
     volumes:
       - "/data/ngrok:/myfiles"
-  redmine-mariadb:
-    image: bitnami/mariadb:latest
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-    volumes:
-      - "~/docker/redmine/mariadb_data:/bitnami"
   redmine:
-    image: bitnami/redmine:latest
+    image: image: sameersbn/redmine:3.4.2
     labels:
       kompose.service.type: nodeport
     volumes:
-      - "~/docker/redmine/redmine_data:/bitnami"
-    depends_on:
-      - redmine-mariadb
+      - "~/docker/redmine/mysql_data:/var/lib/mysql"
+      - "~/docker/redmine/redmine_data:/home/redmine/data"
+    environment:
+      - TZ=Asia/Shanghai
 volumes:
   maven:

@@ -61,7 +61,7 @@ services:
   redmine-mariadb:
     image: bitnami/mariadb:latest
     environment:
-      ALLOW_EMPTY_PASSWORD: yes
+      - ALLOW_EMPTY_PASSWORD=yes
     volumes:
       - "~/docker/redmine/mariadb_data:/bitnami"
   redmine:

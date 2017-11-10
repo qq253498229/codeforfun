@@ -66,9 +66,6 @@ services:
       - "/data/redmine/files:/usr/src/redmine/files"
     environment:
       REDMINE_DB_MYSQL: mysql
-      REDMINE_DB_PORT: 3306
-      REDMINE_DB_USERNAME: root
-      REDMINE_DB_DATABASE: redmine
       REDMINE_DB_PASSWORD: example
 volumes:
   maven:

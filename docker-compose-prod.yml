@@ -62,5 +62,8 @@ services:
     image: redmine
     volumes:
       - "/data/redmine:/usr/src/redmine"
+    environment:
+      REDMINE_DB_MYSQL: mysql
+      REDMINE_DB_PASSWORD: root
 volumes:
   maven:

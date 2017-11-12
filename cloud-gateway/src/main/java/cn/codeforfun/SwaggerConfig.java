@@ -3,6 +3,7 @@ package cn.codeforfun;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.util.StringUtils;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -52,6 +53,9 @@ public class SwaggerConfig implements SwaggerResourcesProvider {
     List<SwaggerResource> resources = new ArrayList<>();
     for (Map.Entry<String, ZuulConst.ZuulRoute> entry : zuulConst.getRoutes().entrySet()) {
       ZuulConst.ZuulRoute value = entry.getValue();
+      if (StringUtils.isEmpty(value.getName())) {
+        continue;
+      }
       String location = zuulConst.getPrefix() + value.getPath().split("/\\*\\*")[0] + "/v2/api-docs";
       resources.add(swaggerResource(value.getName(), location, value.getVersion()));
     }

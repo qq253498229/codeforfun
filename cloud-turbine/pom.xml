@@ -33,7 +33,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <mainClass>cn.codeforfun.HystrixApp</mainClass>
+          <mainClass>cn.codeforfun.TurbineApp</mainClass>
           <!--远程DEBUG-->
           <!--<jvmArguments>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments>-->
         </configuration>

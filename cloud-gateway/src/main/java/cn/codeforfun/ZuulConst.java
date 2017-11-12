@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+/**
+ * @author wangbin
+ */
 @Component
 @Data
 @ConfigurationProperties("zuul")

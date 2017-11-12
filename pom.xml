@@ -21,6 +21,8 @@
     <module>cloud-config</module>
     <module>cloud-gateway</module>
     <module>cloud-wechat</module>
+    <module>cloud-hystrix</module>
+    <module>cloud-turbine</module>
   </modules>
 
   <properties>

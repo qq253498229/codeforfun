@@ -1,8 +1,7 @@
 package cn.codeforfun;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.PathSelectors;
@@ -15,8 +14,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 
-@SpringBootApplication
-@EnableEurekaClient
+/**
+ * @author wangbin
+ */
+@SpringCloudApplication
 @EnableFeignClients
 @EnableSwagger2
 public class WechatApp {

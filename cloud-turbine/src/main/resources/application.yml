@@ -1,0 +1,15 @@
+server:
+  port: 8400
+management:
+  port: 8401
+eureka:
+  client:
+    service-url:
+      defaultZone: http://cloud-eureka:8761/eureka/
+spring:
+  application:
+    name: cloud-turbine
+turbine:
+  app-config: cloud-user,cloud-wechat
+  cluster-name-expression: new String('default')
+  combine-host-port: true

@@ -11,3 +11,9 @@ zuul:
       service-id: cloud-wechat
       name: 微信模块
       version: 1.0
+    cloud-hystrix:
+      path: /hystrix/**
+      service-id: cloud-hystrix
+    cloud-turbine:
+      path: /tubine/**
+      service-id: cloud-turbine

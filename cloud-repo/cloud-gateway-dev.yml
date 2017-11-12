@@ -2,18 +2,12 @@ zuul:
   prefix: /api
   routes:
     cloud-user:
-      path: /user/**
+      path: /cloud-user/**
       service-id: cloud-user
       name: 用户模块
       version: 1.0
     cloud-wechat:
-      path: /wechat/**
+      path: /cloud-wechat/**
       service-id: cloud-wechat
       name: 微信模块
       version: 1.0
-    cloud-hystrix:
-      path: /hystrix/**
-      service-id: cloud-hystrix
-    cloud-turbine:
-      path: /tubine/**
-      service-id: cloud-turbine

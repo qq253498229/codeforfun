@@ -29,6 +29,8 @@ services:
       - "TZ=Asia/Shanghai"
     ports:
       - "8000:8000"
+    depends_on:
+      - cloud-eureka
   cloud-gateway:
     build: cloud-gateway
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-gateway
@@ -36,20 +38,43 @@ services:
       - "TZ=Asia/Shanghai"
     ports:
       - "8888:8888"
+    depends_on:
+      - cloud-eureka
+  cloud-hystrix:
+    build: cloud-hystrix
+    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-hystrix
+    environment:
+      - "TZ=Asia/Shanghai"
+    depends_on:
+      - cloud-eureka
+    ports:
+      - "8300:8300"
+  cloud-turbine:
+    build: cloud-turbine
+    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-turbine
+    environment:
+      - "TZ=Asia/Shanghai"
+    ports:
+      - "8400:8400"
+    depends_on:
+      - cloud-eureka
   cloud-user:
     build: cloud-user
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-user
-    volumes:
-      - "maven:/root/.m2/repository"
     environment:
       - "TZ=Asia/Shanghai"
+    depends_on:
+      - cloud-config
+      - cloud-gateway
+      - mysql
   cloud-wechat:
     build: cloud-wechat
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-wechat
-    volumes:
-      - "maven:/root/.m2/repository"
     environment:
       - "TZ=Asia/Shanghai"
+    depends_on:
+      - cloud-config
+      - cloud-gateway
   mysql: #mysql数据库
     image: mysql:5.7.19
     hostname: mysql

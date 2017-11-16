@@ -11,3 +11,4 @@ zuul:
       service-id: cloud-wechat
       name: 微信模块
       version: 1.0
+  add-proxy-headers: true

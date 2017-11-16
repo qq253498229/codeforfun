@@ -1,9 +1,4 @@
 spring:
-  cloud:
-    config:
-      discovery:
-        enabled: true
-        service-id: cloud-config
   datasource:
     username: root
     password: root

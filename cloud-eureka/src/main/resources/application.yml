@@ -7,3 +7,5 @@ eureka:
   client:
     service-url:
       defauleZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  instance:
+    hostname: cloud-eureka

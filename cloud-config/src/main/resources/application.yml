@@ -13,3 +13,5 @@ eureka:
   client:
     service-url:
       defaultZone: http://cloud-eureka:8761/eureka/
+  instance:
+    hostname: cloud-config

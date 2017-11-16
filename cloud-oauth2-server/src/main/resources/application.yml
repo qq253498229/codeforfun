@@ -1,0 +1,30 @@
+server:
+  port: 8110
+#security:
+#  ignored: /css/**,/js/**,/favicon.ico,/webjars/**
+#  oauth2:
+#    client:
+#      scope: read, write
+#      auto-approve-scopes: .*
+#      client-id: cff
+#      client-secret: cff
+#    authorization:
+#      check-token-access: permitAll()
+#  user:
+#    password: admin
+#    name: admin
+#    role: ADMIN
+#management:
+#  security:
+#    enabled: false
+#debug: true
+spring:
+#  thymeleaf:
+#    cache: false
+  datasource:
+    url: jdbc:mysql:///codeforfun?useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+debug: true

@@ -1,11 +1,6 @@
 zuul:
   prefix: /api
   routes:
-    cloud-oauth:
-      path: /cloud-oauth/**
-      service-id: cloud-oauth
-      name: 权限模块
-      version: 1.0
     cloud-user:
       path: /cloud-user/**
       service-id: cloud-user

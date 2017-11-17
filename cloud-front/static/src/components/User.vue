@@ -18,8 +18,8 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-for="data in dataList">
-            <td v-text="data.id"></td>
+          <tr v-for="(data,index) in dataList">
+            <td v-text="index+1"></td>
             <td v-text="data.username"></td>
             <td v-text="data.password"></td>
             <td></td>
@@ -37,6 +37,7 @@
 </template>
 <script>
   import page from '../common/Page.vue'
+  import axios from '../http'
 
   export default {
     components: {
@@ -57,10 +58,10 @@
     },
     methods: {
       onInit(pageNo) {
-        this.$http.get('cloud-user/user/' + (pageNo ? pageNo : 1) + '/' + 10).then(resp => {
+        axios.get('api/cloud-user/' + (pageNo ? pageNo : 1) + '/' + 10).then(resp => {
           if (resp.status === 200) {
-            this.dataList = resp.body.content;
-            this.dataCount = resp.body.totalElements;
+            this.dataList = resp.data.content;
+            this.dataCount = resp.data.totalElements;
 
           }
         });

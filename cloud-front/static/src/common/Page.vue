@@ -3,9 +3,6 @@
     <nav aria-label="Page navigation">
       <ul class="pagination">
         <li :class="{disabled : pageNo==1}">
-          <a href="javascript:void(0);" aria-label="Previous" v-if="pageNo==1">
-            <span>&laquo;</span>
-          </a>
           <a href="javascript:void(0);" aria-label="Previous" @click="goto(pageNo-1)" v-if="pageNo>1">
             <span>&laquo;</span>
           </a>
@@ -14,9 +11,6 @@
           <a href="javascript:void(0);" v-text="page" @click="goto(page)"></a>
         </li>
         <li :class="{disabled: pageNo==totalPages}">
-          <a href="javascript:void(0);" aria-label="Next" v-if="pageNo==totalPages">
-            <span>&raquo;</span>
-          </a>
           <a href="javascript:void(0);" aria-label="Next" @click="goto(pageNo+1)" v-if="pageNo<totalPages">
             <span>&raquo;</span>
           </a>
@@ -63,17 +57,14 @@
       }
     },
     watch: {
-      'pageSize'(newVal, oldVal) {
+      'pageSize'() {
         this.changePageList();
       },
-      'totalItems'(newVal, oldVal) {
+      'totalItems'() {
         this.changePageList();
       }
     },
     methods: {
-      pageSizeChange(event) {
-        this.changePageList();
-      },
       /**
        * 跳转到第N页
        * @param pageNumber

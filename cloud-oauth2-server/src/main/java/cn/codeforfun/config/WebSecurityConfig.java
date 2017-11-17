@@ -23,7 +23,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.jdbcAuthentication().dataSource(dataSource);
-//    auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
   }
 
   @Override
@@ -40,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
-            .antMatchers("/login", "/oauth/token", "/oauth/refresh_token").permitAll()
+            .antMatchers("/login").permitAll()
             .anyRequest().authenticated()
             .and().formLogin().permitAll()
             .and().csrf().disable();

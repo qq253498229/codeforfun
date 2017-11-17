@@ -11,32 +11,19 @@
  Date: 03/14/2017 14:09:46 PM
 */
 
-SET NAMES utf8;
-SET FOREIGN_KEY_CHECKS = 0;
-
 -- ----------------------------
 --  Table structure for `authorities`
 -- ----------------------------
-DROP TABLE IF EXISTS `authorities`;
-CREATE TABLE `authorities` (
+CREATE TABLE IF NOT EXISTS `authorities` (
   `username`  VARCHAR(255) DEFAULT NULL,
   `authority` VARCHAR(255) DEFAULT NULL
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
--- ----------------------------
---  Records of `authorities`
--- ----------------------------
-BEGIN;
-INSERT INTO `authorities` VALUES ('admin', 'ADMIN'), ('user', 'USER');
-COMMIT;
+  ENGINE = InnoDB;
 
 -- ----------------------------
 --  Table structure for `clientdetails`
 -- ----------------------------
-DROP TABLE IF EXISTS `clientdetails`;
-CREATE TABLE `clientdetails` (
+CREATE TABLE IF NOT EXISTS `clientdetails` (
   `appId`                  VARCHAR(128) NOT NULL,
   `resourceIds`            VARCHAR(256)  DEFAULT NULL,
   `appSecret`              VARCHAR(256)  DEFAULT NULL,
@@ -50,14 +37,12 @@ CREATE TABLE `clientdetails` (
   `autoApproveScopes`      VARCHAR(256)  DEFAULT NULL,
   PRIMARY KEY (`appId`)
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+  ENGINE = InnoDB;
 
 -- ----------------------------
 --  Table structure for `oauth_access_token`
 -- ----------------------------
-DROP TABLE IF EXISTS `oauth_access_token`;
-CREATE TABLE `oauth_access_token` (
+CREATE TABLE IF NOT EXISTS `oauth_access_token` (
   `token_id`          VARCHAR(256) DEFAULT NULL,
   `token`             BLOB,
   `authentication_id` VARCHAR(128) NOT NULL,
@@ -67,14 +52,12 @@ CREATE TABLE `oauth_access_token` (
   `refresh_token`     VARCHAR(256) DEFAULT NULL,
   PRIMARY KEY (`authentication_id`)
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+  ENGINE = InnoDB;
 
 -- ----------------------------
 --  Table structure for `oauth_approvals`
 -- ----------------------------
-DROP TABLE IF EXISTS `oauth_approvals`;
-CREATE TABLE `oauth_approvals` (
+CREATE TABLE IF NOT EXISTS `oauth_approvals` (
   `userId`         VARCHAR(256) DEFAULT NULL,
   `clientId`       VARCHAR(256) DEFAULT NULL,
   `scope`          VARCHAR(256) DEFAULT NULL,
@@ -82,14 +65,12 @@ CREATE TABLE `oauth_approvals` (
   `expiresAt`      DATETIME     DEFAULT NULL,
   `lastModifiedAt` DATETIME     DEFAULT NULL
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+  ENGINE = InnoDB;
 
 -- ----------------------------
 --  Table structure for `oauth_client_details`
 -- ----------------------------
-DROP TABLE IF EXISTS `oauth_client_details`;
-CREATE TABLE `oauth_client_details` (
+CREATE TABLE IF NOT EXISTS `oauth_client_details` (
   `client_id`               VARCHAR(128) NOT NULL,
   `resource_ids`            VARCHAR(256)  DEFAULT NULL,
   `client_secret`           VARCHAR(256)  DEFAULT NULL,
@@ -103,24 +84,12 @@ CREATE TABLE `oauth_client_details` (
   `autoapprove`             VARCHAR(256)  DEFAULT NULL,
   PRIMARY KEY (`client_id`)
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
--- ----------------------------
---  Records of `oauth_client_details`
--- ----------------------------
-BEGIN;
-INSERT INTO `oauth_client_details` VALUES
-  ('acme', 'oauth2-resource', 'acmesecret', 'app', 'authorization_code', '', NULL, NULL, NULL, NULL, 'app'),
-  ('client', 'oauth2-resource', 'secret', 'app', 'password,authorization_code,refresh_token', '', NULL, 7200, 86400, NULL, 'app'),
-  ('my-trusted-client', 'oauth2-resource', NULL, 'read', 'authorization_code', NULL, NULL, NULL, NULL, NULL, '');
-COMMIT;
+  ENGINE = InnoDB;
 
 -- ----------------------------
 --  Table structure for `oauth_client_token`
 -- ----------------------------
-DROP TABLE IF EXISTS `oauth_client_token`;
-CREATE TABLE `oauth_client_token` (
+CREATE TABLE IF NOT EXISTS `oauth_client_token` (
   `token_id`          VARCHAR(256) DEFAULT NULL,
   `token`             BLOB,
   `authentication_id` VARCHAR(128) NOT NULL,
@@ -128,49 +97,32 @@ CREATE TABLE `oauth_client_token` (
   `client_id`         VARCHAR(256) DEFAULT NULL,
   PRIMARY KEY (`authentication_id`)
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+  ENGINE = InnoDB;
 
 -- ----------------------------
 --  Table structure for `oauth_code`
 -- ----------------------------
-DROP TABLE IF EXISTS `oauth_code`;
-CREATE TABLE `oauth_code` (
+CREATE TABLE IF NOT EXISTS `oauth_code` (
   `code`           VARCHAR(256) DEFAULT NULL,
   `authentication` BLOB
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+  ENGINE = InnoDB;
 
 -- ----------------------------
 --  Table structure for `oauth_refresh_token`
 -- ----------------------------
-DROP TABLE IF EXISTS `oauth_refresh_token`;
-CREATE TABLE `oauth_refresh_token` (
+CREATE TABLE IF NOT EXISTS `oauth_refresh_token` (
   `token_id`       VARCHAR(256) DEFAULT NULL,
   `token`          BLOB,
   `authentication` BLOB
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
+  ENGINE = InnoDB;
 -- ----------------------------
 --  Table structure for `users`
 -- ----------------------------
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `username` VARCHAR(255) DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `username` VARCHAR(255) NOT NULL PRIMARY KEY ,
   `password` VARCHAR(255) DEFAULT NULL,
   `enabled`  CHAR(50)     DEFAULT NULL
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
--- ----------------------------
---  Records of `users`
--- ----------------------------
-BEGIN;
-INSERT INTO `users` VALUES ('admin', 'admin', 'Y'), ('user', 'user', 'Y');
-COMMIT;
-
-SET FOREIGN_KEY_CHECKS = 1;
+  ENGINE = InnoDB;

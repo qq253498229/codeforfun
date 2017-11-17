@@ -1,4 +1,4 @@
-package cn.codeforfun;
+package cn.codeforfun.consts;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

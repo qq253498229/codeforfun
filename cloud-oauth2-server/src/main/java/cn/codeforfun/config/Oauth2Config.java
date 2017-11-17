@@ -41,7 +41,7 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
     clients.jdbc(dataSource);
   }
 
-  @Bean // 声明TokenStore实现
+  @Bean
   public TokenStore tokenStore() {
     return new JdbcTokenStore(dataSource);
   }
@@ -50,8 +50,6 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
   @Bean
   public DefaultTokenServices tokenServices() {
     DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
-//    defaultTokenServices.setAccessTokenValiditySeconds(-1);
-//    defaultTokenServices.setRefreshTokenValiditySeconds(-1);
     defaultTokenServices.setSupportRefreshToken(true);
     defaultTokenServices.setReuseRefreshToken(false);
     defaultTokenServices.setTokenStore(tokenStore());

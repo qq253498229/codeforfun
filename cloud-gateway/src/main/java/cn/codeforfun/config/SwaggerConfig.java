@@ -1,5 +1,6 @@
-package cn.codeforfun;
+package cn.codeforfun.config;
 
+import cn.codeforfun.consts.ZuulConst;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;

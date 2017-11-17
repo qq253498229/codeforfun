@@ -1,50 +1,63 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <mt-tab-container class="page-tabbar-container" v-model="selected">
+      <mt-tab-container-item id="外卖">
+        <mt-cell v-for="n in 10" :title="'餐厅 ' + n"/>
+      </mt-tab-container-item>
+      <mt-tab-container-item id="订单">
+        <mt-cell v-for="n in 5" :title="'订单 ' + n"/>
+      </mt-tab-container-item>
+      <mt-tab-container-item id="发现">
+        <mt-cell v-for="n in 7" :title="'发现 ' + n"/>
+      </mt-tab-container-item>
+      <mt-tab-container-item id="我的">
+        <div class="page-part">
+          <mt-cell v-for="n in 12" :title="'我的 ' + n"/>
+        </div>
+        <router-link to="/">
+          <mt-button type="danger" size="large">退出</mt-button>
+        </router-link>
+      </mt-tab-container-item>
+    </mt-tab-container>
+    <mt-tabbar v-model="selected" fixed>
+      <mt-tab-item id="外卖">
+        <img slot="icon">
+        外卖
+      </mt-tab-item>
+      <mt-tab-item id="订单">
+        <img slot="icon">
+        订单
+      </mt-tab-item>
+      <mt-tab-item id="发现">
+        <img slot="icon">
+        发现
+      </mt-tab-item>
+      <mt-tab-item id="我的">
+        <img slot="icon">
+        我的
+      </mt-tab-item>
+    </mt-tabbar>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  export default {
+    name: 'HelloWorld',
+    data() {
+      return {
+        msg: 'Welcome to Your Vue.js App',
+        selected: '外卖',
+        active: '外卖'
+      }
+    },
+    methods: {
+      btnClick() {
+        Toast({
+          message: this.msg,
+          position: 'bottom',
+          duration: 5000
+        });
+      }
     }
   }
-}
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

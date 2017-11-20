@@ -7,26 +7,28 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    environment:
+      TZ: Asia/Shanghai
   cloud-eureka:
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-eureka
     environment:
-      - "TZ=Asia/Shanghai"
+      TZ: Asia/Shanghai
   cloud-config:
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-config
     environment:
-      - "TZ=Asia/Shanghai"
+      TZ: Asia/Shanghai
     depends_on:
       - cloud-eureka
   cloud-gateway:
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-gateway
     environment:
-      - "TZ=Asia/Shanghai"
+      TZ: Asia/Shanghai
     depends_on:
       - cloud-eureka
   cloud-user:
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-user
     environment:
-      - "TZ=Asia/Shanghai"
+      TZ: Asia/Shanghai
     depends_on:
       - cloud-gateway
       - cloud-config
@@ -34,7 +36,7 @@ services:
   cloud-wechat:
     image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-wechat
     environment:
-      - "TZ=Asia/Shanghai"
+      TZ: Asia/Shanghai
     depends_on:
       - cloud-gateway
       - cloud-config
@@ -47,14 +49,14 @@ services:
     restart: always # 容器重启策略
     environment:
       MYSQL_ROOT_PASSWORD: root
-    environment:
-      - "TZ=Asia/Shanghai"
+      TZ: Asia/Shanghai
   ngrok:
     image: hteen/ngrok
     ports:
       - "4443:4443"
     environment:
       DOMAIN: ngrok.codeforfun.cn
+      TZ: Asia/Shanghai
     command: /bin/sh /server.sh
     volumes:
       - "/data/ngrok:/myfiles"
@@ -64,6 +66,7 @@ services:
     environment:
       REDMINE_DB_MYSQL: db # 数据库服务名，对应11行的db:
       REDMINE_DB_PASSWORD: example # 数据库密码
+      TZ: Asia/Shanghai
   db:
     image: mysql:5.7 # mysql镜像版本
     restart: always

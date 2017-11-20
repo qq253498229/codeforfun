@@ -76,6 +76,6 @@ services:
       TZ: Asia/Shanghai # 时区(timezone)，防止美国时间
     volumes:
       - "~/docker/redmine/mysql_data:/var/lib/mysql" # ./mysql/data数据库在本地的存放位置(可以修改)
-      - "./docker/mysql/conf/my.cnf:/etc/mysql/conf.d/" # mysql配置文件，可自行修改
+      - "./docker/mysql/conf/my.cnf:/etc/mysql/conf.d" # mysql配置文件，可自行修改
 volumes:
   maven:

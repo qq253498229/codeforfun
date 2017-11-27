@@ -1,17 +1,33 @@
 import {RouterModule} from '@angular/router'
-import {HomeComponent} from "./common/home/home.component";
-import {LoginComponent} from "./common/login/login.component";
-import {LoginGuard} from "./common/login/login.guard";
+import {HomeComponent} from "./home/home/home.component";
+import {LoginComponent} from "./home/login/login.component";
+import {IndexComponent} from "./home/index/index.component";
+import {NgModule} from "@angular/core";
 
-export const AppRouter = RouterModule.forRoot([
+const routes = [
+  {
+    path: '',
+    redirectTo: 'index',
+    pathMatch: 'full'
+  },
   {
     path: '',
     component: HomeComponent,
-    canActivate: [LoginGuard],
-    pathMatch: 'full'
+    data: {title: 'Home'},
+    children: [
+      {path: 'index', component: IndexComponent}
+    ]
   },
   {
     path: 'login',
     component: LoginComponent
   }
-])
+];
+
+@NgModule({
+  //H5模式。改成true后可以将URL换成井号(#)
+  imports: [RouterModule.forRoot(routes, {useHash: false})],
+  exports: [RouterModule]
+})
+export class AppRouterModule {
+}

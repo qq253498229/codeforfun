@@ -1,7 +1,7 @@
 import {RouterModule} from '@angular/router'
 import {RoleComponent} from "./role.component";
 import {ListComponent} from "./list/list.component";
-import {HomeComponent} from "../common/home/home.component";
+import {HomeComponent} from "../home/home/home.component";
 
 export const RoleRouter = RouterModule.forChild([
   {

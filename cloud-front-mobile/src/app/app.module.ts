@@ -1,15 +1,13 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common'
-
 import {AppComponent} from './app.component';
-import {AppRouter} from "./app.router";
+import {AppRouterModule} from "./app.router";
 import {UserModule} from "./user/user.module";
 import {RoleModule} from "./role/role.module";
-import {HomeComponent} from "./common/home/home.component";
-import {TopNavbarComponent} from "./common/top-navbar/top-navbar.component";
-import {LoginComponent} from "./common/login/login.component";
-import {LoginGuard} from "./common/login/login.guard";
+import {HomeComponent} from "./home/home/home.component";
+import {TopNavbarComponent} from "./home/top-navbar/top-navbar.component";
+import {LoginComponent} from "./home/login/login.component";
+import {IndexComponent} from "./home/index/index.component";
 
 
 @NgModule({
@@ -17,19 +15,16 @@ import {LoginGuard} from "./common/login/login.guard";
     AppComponent,
     HomeComponent,
     TopNavbarComponent,
-    LoginComponent
+    LoginComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
-    AppRouter,
+    AppRouterModule,
     UserModule,
     RoleModule
   ],
-  providers: [
-    LoginGuard,
-    //地址栏换成井号(#)
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

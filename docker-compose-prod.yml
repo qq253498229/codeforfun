@@ -64,7 +64,7 @@ services:
     image: jenkins/jenkins
     environment:
       TZ: Asia/Shanghai
-    user: 0
+    user: root
     volumes:
       - "./docker/jenkins/data:/var/jenkins_home"
   redmine:

@@ -60,6 +60,12 @@ services:
     command: /bin/sh /server.sh
     volumes:
       - "/data/ngrok:/myfiles"
+  jenkins:
+    image: jenkins
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - "./docker/jenkins/data:/var/jenkins_home"
   redmine:
     image: redmine
     restart: always

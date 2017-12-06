@@ -61,7 +61,7 @@ services:
     volumes:
       - "/data/ngrok:/myfiles"
   jenkins:
-    image: jenkins
+    image: jenkins/jenkins
     environment:
       TZ: Asia/Shanghai
     volumes:

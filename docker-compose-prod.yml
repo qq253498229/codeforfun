@@ -64,11 +64,12 @@ services:
     image: jenkins/jenkins
     environment:
       TZ: Asia/Shanghai
+      DOCKER_PATH: $(which docker)
     user: root
     volumes:
       - "./docker/jenkins/data:/var/jenkins_home"
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "$(which docker):/usr/bin/docker"
+      - "$(DOCKER_PATH):/usr/bin/docker:ro"
   redmine:
     image: redmine
     restart: always

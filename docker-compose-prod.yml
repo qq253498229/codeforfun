@@ -61,10 +61,11 @@ services:
     volumes:
       - "/data/ngrok:/myfiles"
   jenkins:
-    image: jenkins/jenkins
+    build: docker/jenkins
+    image: registry.cn-beijing.aliyuncs.com/wangdali/cloud-jenkins
     environment:
       TZ: Asia/Shanghai
-    user: root
+    user: jenkins
     volumes:
       - "./docker/jenkins/data:/var/jenkins_home"
       - "/var/run/docker.sock:/var/run/docker.sock"

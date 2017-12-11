@@ -1,11 +1,10 @@
 FROM jenkins:latest
-
+# 下载安装Docker CLI
 USER root
-RUN apt-get update \
-      && apt-get upgrade -y \
-      && apt-get install -y sudo libltdl-dev \
-      && rm -rf /var/lib/apt/lists/*
-RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
-
-USER jenkins
-# Here you can install some Jenkins plugins if you want
+RUN curl -SLO https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz \
+    && tar zxvf docker-latest.tgz \
+    && cp docker/docker /usr/local/bin/ \
+    && rm -rf docker docker-latest.tgz \
+# 将 `jenkins` 用户的组 ID 改为宿主 `docker` 组的组ID，从而具有执行 `docker` 命令的权限。
+ARG DOCKER_GID=999
+USER jenkins:${DOCKER_GID}

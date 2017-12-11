@@ -15,15 +15,32 @@
   </parent>
 
   <modules>
-    <module>cloud-user</module>
-    <module>cloud-test</module>
-    <module>cloud-eureka</module>
-    <module>cloud-config</module>
-    <module>cloud-gateway</module>
-    <module>cloud-wechat</module>
-    <module>cloud-hystrix</module>
-    <module>cloud-turbine</module>
-    <module>cloud-oauth2-server</module>
+    <!--中心-->
+    <!--注册发现-->
+    <module>./cloud-center/cloud-eureka</module>
+    <!--配置文件-->
+    <module>./cloud-center/cloud-config</module>
+    <!--路由-->
+    <module>./cloud-center/cloud-gateway</module>
+    <!--监控-->
+    <module>./cloud-center/cloud-hystrix</module>
+    <!--监控中心-->
+    <module>./cloud-center/cloud-turbine</module>
+    <!--权限认证-->
+    <module>./cloud-center/cloud-oauth2-server</module>
+    <!--/中心-->
+    <!--通用部分-->
+    <!--feign接口-->
+    <module>./cloud-common/cloud-common-interface</module>
+    <!--/通用部分-->
+    <!--服务-->
+    <module>./cloud-service/cloud-user</module>
+    <module>./cloud-service/cloud-test</module>
+    <module>./cloud-service/cloud-wechat</module>
+    <!--/服务-->
+    <!--测试-->
+    <module>test/mq-test</module>
+    <!--/测试-->
   </modules>
 
   <properties>
@@ -49,47 +66,102 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <dependency>
+        <groupId>cn.codeforfun</groupId>
+        <artifactId>cloud-common-interface</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>cn.codeforfun</groupId>
+        <artifactId>cloud-common-dto</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>2.7.0</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>2.7.0</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-eureka</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-hystrix</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+  </dependencies>
+
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-        </plugin>
-        <plugin>
-          <groupId>com.spotify</groupId>
-          <artifactId>docker-maven-plugin</artifactId>
-          <version>0.4.14</version>
-          <executions>
-            <execution>
-              <id>build-image</id>
-              <phase>package</phase>
-              <goals>
-                <goal>build</goal>
-              </goals>
-            </execution>
-          </executions>
-          <configuration>
-            <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-            <!-- 解决Connect to localhost:2375的问题的其中一种方式，注意要跟docker-machine env相一致 -->
-            <!--<dockerHost>https://192.168.99.100:2376</dockerHost>-->
-            <!--<dockerCertPath>C:\Users\Administrator\.docker\machine\machines\default</dockerCertPath>-->
-            <baseImage>java:8</baseImage>
-            <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
-            <resources>
-              <resource>
-                <targetPath>/</targetPath>
-                <directory>${project.build.directory}</directory>
-                <include>${project.build.finalName}.jar</include>
-              </resource>
-            </resources>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>your main class</mainClass>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>0.4.14</version>
+        <executions>
+          <execution>
+            <id>build-image</id>
+            <phase>package</phase>
+            <goals>
+              <goal>build</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+          <!-- 解决Connect to localhost:2375的问题的其中一种方式，注意要跟docker-machine env相一致 -->
+          <!--<dockerHost>https://192.168.99.100:2376</dockerHost>-->
+          <!--<dockerCertPath>C:\Users\Administrator\.docker\machine\machines\default</dockerCertPath>-->
+          <baseImage>java:8</baseImage>
+          <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+          <resources>
+            <resource>
+              <targetPath>/</targetPath>
+              <directory>${project.build.directory}</directory>
+              <include>${project.build.finalName}.jar</include>
+            </resource>
+          </resources>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 
   <repositories>

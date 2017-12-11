@@ -1,0 +1,22 @@
+server:
+  port: 8888
+eureka:
+  client:
+    service-url:
+      defaultZone: http://cloud-eureka:8761/eureka/
+  instance:
+    hostname: cloud-gateway
+spring:
+  application:
+    name: cloud-gateway
+  rabbitmq:
+    username: admin
+    password: admin
+  cloud:
+    config:
+      discovery:
+        service-id: cloud-config
+        enabled: true
+management:
+  security:
+    enabled: false

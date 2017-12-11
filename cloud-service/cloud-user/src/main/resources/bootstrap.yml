@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: cloud-user
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: cloud-config
+eureka:
+  client:
+    service-url:
+      defaultZone: http://cloud-eureka:8761/eureka/
+#debug: true

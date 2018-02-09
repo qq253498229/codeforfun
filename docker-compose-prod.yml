@@ -86,5 +86,9 @@ services:
     volumes:
       - "~/docker/redmine/mysql_data:/var/lib/mysql" # ./mysql/data数据库在本地的存放位置(可以修改)
       - "./docker/mysql/conf/my.cnf:/etc/mysql/conf.d/my.cnf" # mysql配置文件，可自行修改
+  init:
+    image: registry.cn-beijing.aliyuncs.com/wangdali/spring-initializr
+    environment:
+      TZ: Asia/Shanghai
 volumes:
   maven:

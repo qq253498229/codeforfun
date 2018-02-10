@@ -1,6 +1,10 @@
 # codeforfun
 spring cloud demo
 
+> ngrok请大家不用的时候即时关闭，微信端的地址也请修改掉。为了大家的使用，降低服务器压力，文明你我他
+
+> http://init.codeforfun.cn 是spring initializr项目的移植，在IDE创建spring项目的时候可能会有帮助
+
 ## 简介
 
 - 1.技术体系
